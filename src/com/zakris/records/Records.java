@@ -50,51 +50,67 @@ public class Records {
             inFile.close();
         } else if(choice == 2){
 
-            int recordId = getLastDbId(fileName) + 1;
-            System.out.println("Add below");
-            BufferedReader recordInput = new BufferedReader(new InputStreamReader(System.in));
-
-            System.out.print("Artist: ");
-            String recordArtist = recordInput.readLine();
-
-            System.out.print("Name of record: ");
-            String recordName = recordInput.readLine();
-
-            System.out.print("Year: ");
-            int recordYear = Integer.parseInt(recordInput.readLine());
-
-            System.out.print("Year of album press: ");
-            int recordPressYear = Integer.parseInt(recordInput.readLine());
-
-            System.out.print("Index: ");
-            String recordIndex = recordInput.readLine();
-
-            System.out.print("Notes: ");
-            String recordNotes = recordInput.readLine();
-
-            Record newRecord = new Record(
-                    recordId, 
-                    recordArtist, 
-                    recordName, 
-                    recordYear, 
-                    recordPressYear, 
-                    recordIndex,
-                    recordNotes);
-
             PrintWriter outstream = new PrintWriter(
                 new BufferedWriter(
                     new FileWriter(fileName, true)));
-                    
-            outstream.println(
-                newRecord.getId() + "," + 
-                newRecord.getIndex() + "," + 
-                newRecord.getArtist() + "," + 
-                newRecord.getName() + "," + 
-                newRecord.getYear() + "," + 
-                newRecord.getPressYear() + "," + 
-                newRecord.getNotes()
-                );
-            outstream.close();
+            
+            int currentLastDbId = getLastDbId(fileName); 
+            int counter = 1;
+
+            while (true) {
+                
+                int recordId = currentLastDbId + counter;
+                counter++;
+
+                System.out.println("Add below");
+                BufferedReader recordInput = new BufferedReader(new InputStreamReader(System.in));
+
+                System.out.print("Artist: ");
+                String recordArtist = recordInput.readLine();
+
+                System.out.print("Name of record: ");
+                String recordName = recordInput.readLine();
+
+                System.out.print("Year: ");
+                int recordYear = Integer.parseInt(recordInput.readLine());
+
+                System.out.print("Year of album press: ");
+                int recordPressYear = Integer.parseInt(recordInput.readLine());
+
+                System.out.print("Index: ");
+                String recordIndex = recordInput.readLine();
+
+                System.out.print("Notes: ");
+                String recordNotes = recordInput.readLine();
+
+                Record newRecord = new Record(
+                        recordId, 
+                        recordArtist, 
+                        recordName, 
+                        recordYear, 
+                        recordPressYear, 
+                        recordIndex,
+                        recordNotes);
+
+                outstream.println(
+                    newRecord.getId() + "," + 
+                    newRecord.getIndex() + "," + 
+                    newRecord.getArtist() + "," + 
+                    newRecord.getName() + "," + 
+                    newRecord.getYear() + "," + 
+                    newRecord.getPressYear() + "," + 
+                    newRecord.getNotes()
+                    ); 
+                
+                System.out.print("Do you want to add another one? y/n: ");
+                String addMore = recordInput.readLine();
+
+                if (addMore.equals("n")) {
+                    outstream.close();
+                    break;
+                }
+            }
+            
         } else {
             Random r = new Random();
             int randomRecordId = r.nextInt((getLastDbId(fileName) - 1) + 1) + 1;
