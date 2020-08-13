@@ -4,18 +4,18 @@ public class Record {
     private String artist;
     private String name;
     private int year;
-    private int pressYear = 0;
+    private int pressYear;
     private String index;
-    private String notes = "";
+    private String notes;
 
     // constructor
     public Record(String artist, String name, int year, int pressYear, String index, String notes) {
         this.artist = artist;
         this.name = name;
         this.year = year;
-        this.pressYear = pressYear;
+        this.pressYear = 0;
         this.index = index;
-        this.notes = notes;
+        this.notes = "";
     }
 
     // setters

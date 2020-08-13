@@ -44,7 +44,29 @@ public class Records {
             
             inFile.close();
         } else {
-            System.out.println("You chose 2");
+            System.out.println("Add below");
+            BufferedReader recordInput = new BufferedReader(new InputStreamReader(System.in));
+
+            System.out.print("Artist: ");
+            String recordArtist = recordInput.readLine();
+
+            System.out.print("Name of record: ");
+            String recordName = recordInput.readLine();
+            
+            System.out.print("Year: ");
+            int recordYear = Integer.parseInt(recordInput.readLine());
+
+            System.out.print("Year of album press: ");
+            int pressYear = Integer.parseInt(recordInput.readLine());
+            
+            System.out.print("Index: ");
+            String recordIndex = recordInput.readLine();
+            
+            System.out.print("Notes: ");
+            String RecordNotes = recordInput.readLine();
+
+            Record newRecord = new Record(recordArtist, recordName, recordYear, pressYear, recordIndex, RecordNotes);
+            System.out.println(newRecord.getArtist());
         }
 
         
