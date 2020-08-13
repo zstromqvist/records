@@ -2,21 +2,23 @@ package com.zakris.records;
 
 public class Record {
     private int id;
+    private String index;
     private String artist;
     private String name;
     private int year;
+    private String format;
     private int pressYear = 0;
-    private String index;
     private String notes = "";
 
     // constructor
-    public Record(int id, String artist, String name, int year, int pressYear, String index, String notes) {
+    public Record(int id, String index, String artist, String name, int year, String format, int pressYear, String notes) {
         this.id = id;
+        this.index = index;
         this.artist = artist;
         this.name = name;
         this.year = year;
+        this.format = format;
         this.pressYear = pressYear;
-        this.index = index;
         this.notes = notes;
     }
 
@@ -35,6 +37,10 @@ public class Record {
 
     public void setYear(int albumYear) {
         this.year = albumYear;
+    }
+
+    public void setFormat(String albumFormat) {
+        this.format = albumFormat;
     }
 
     public void setPressYear(int albumPressYear) {
@@ -64,6 +70,10 @@ public class Record {
 
     public int getYear() {
         return this.year;
+    }
+
+    public String getFormat() {
+        return this.format;
     }
 
     public int getPressYear() {
