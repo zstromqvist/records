@@ -3,11 +3,17 @@ package com.zakris.records;
 import java.io.*;
 import java.util.Random;
 
+import javax.swing.*;
+
 public class Records {
     public static void main(String[] args) throws IOException {
 
         // General stuff
         String fileName = "db.csv";
+        JFrame frame = new JFrame("Record Collector");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1000, 700);
+        frame.setVisible(true);
 
         System.out.println(
                 "Welcome! What do you want to do?\n 1: Search records\n 2: Add record(s)\n 3: Pick a record for me!");
