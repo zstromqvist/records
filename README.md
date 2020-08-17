@@ -3,6 +3,8 @@
 <!-- badges: start -->
 ![GitHub release (latest by
 date)](https://img.shields.io/github/v/release/zstromqvist/records)
+![GitHub issues](https://img.shields.io/github/issues/zstromqvist/records)
+![License](https://img.shields.io/github/license/zstromqvist/records)
 <!-- badges: end -->
 
 Record collector is a simple program for keeping track of and organizing your physical records (or concert bootlegs)
