@@ -78,8 +78,11 @@ public class Records {
                 System.out.print("Year: ");
                 int recordYear = Integer.parseInt(recordInput.readLine());
 
-                System.out.print("Year of album press: ");
+                System.out.print("Year of album press (0 = Same as origin year): ");
                 int recordPressYear = Integer.parseInt(recordInput.readLine());
+                if (recordPressYear == 0) {
+                    recordPressYear = recordYear;
+                }
 
                 System.out.println("Format\n 1: Vinyl\n 2: CD");
                 System.out.print("1 or 2: ");
@@ -104,6 +107,12 @@ public class Records {
                 outstream.println(newRecord.getId() + "," + newRecord.getIndex() + "," + newRecord.getArtist() + ","
                         + newRecord.getName() + "," + newRecord.getYear() + "," + newRecord.getFormat() + ","
                         + newRecord.getPressYear() + "," + newRecord.getNotes());
+
+                System.out.println("You added:");
+                System.out.println("Artist: " + newRecord.getArtist() + ", Album name: " + newRecord.getName()
+                        + ", Year: " + newRecord.getYear() + ", Press year: " + newRecord.getPressYear() + ", Format: "
+                        + newRecord.getFormat() + ", Notes: " + newRecord.getNotes() + ", Index: "
+                        + newRecord.getIndex());
 
                 System.out.print("Do you want to add another one? y/n: ");
                 String addMore = recordInput.readLine();
