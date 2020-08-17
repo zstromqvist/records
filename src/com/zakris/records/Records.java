@@ -2,8 +2,10 @@ package com.zakris.records;
 
 import java.io.*;
 import java.util.Random;
-
+import java.awt.GridLayout;
+//import java.awt.Insets;
 import javax.swing.*;
+//import javax.swing.border.EmptyBorder;
 
 public class Records {
     public static void main(String[] args) throws IOException {
@@ -11,13 +13,34 @@ public class Records {
         // General stuff
         String fileName = "db.csv";
         JFrame frame = new JFrame("Record Collector");
+        JLabel label = new JLabel("Welcome! What do you want to do?", JLabel.CENTER);
+        JPanel panel = new JPanel();
+
+        // create panel
+        //BoxLayout boxlayout = new BoxLayout(panel, BoxLayout.Y_AXIS);
+        //panel.setLayout(boxlayout);
+        //panel.setBorder(new EmptyBorder(new Insets(50, 100, 50, 100)));
+
+        // define and add buttons to the panel
+        JButton button1 = new JButton("Search records");
+        JButton button2 = new JButton("Add record(s)");     
+        JButton button3 = new JButton("Pick a record for me!");
+
+        panel.add(button1);
+        panel.add(button2);
+        panel.add(button3);
+        
+        // add everything to the frame
+        frame.setLayout(new GridLayout(2, 1));
+        frame.add(label);
+        frame.add(panel);
+        frame.setSize(400, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 700);
         frame.setVisible(true);
 
         System.out.println(
                 "Welcome! What do you want to do?\n 1: Search records\n 2: Add record(s)\n 3: Pick a record for me!");
-        System.out.print("Choice: ");
+        //System.out.print("Choice: ");
 
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         int choice = Integer.parseInt(input.readLine());
