@@ -78,8 +78,9 @@ public class RecordGui {
 
     private static void buttonActionPerformed3(ActionEvent evt, JFrame frame, String fileName) throws IOException {
 
+        DatabaseConnection con = new DatabaseConnection();
         Random r = new Random();
-        int randomRecordId = r.nextInt((getLastDbId(fileName) - 1) + 1) + 1;
+        int randomRecordId = r.nextInt((con.getLastDbId(con.dbPath()) - 1) + 1) + 1;
         BufferedReader inFile = new BufferedReader(new FileReader(fileName));
 
         String line = "";
