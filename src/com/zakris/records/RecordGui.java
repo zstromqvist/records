@@ -17,11 +17,12 @@ import java.io.IOException;
 
 public class RecordGui {
 
-    public void startGui() throws IOException {
-        String fileName = "db.csv";
+    protected JButton button1, button2, button3;
+
+    public void createMenu() {
 
         JFrame frame = new JFrame("Record Collector");
-        JLabel label = new JLabel("Welcome! What do you want to do?", JLabel.CENTER);
+        JLabel label = new JLabel("Welcome! \nWhat do you want to do?", JLabel.CENTER);
         JPanel panel = new JPanel();
 
         JButton button1 = new JButton("Search records");
@@ -32,22 +33,27 @@ public class RecordGui {
 
             @Override
             public void actionPerformed(ActionEvent evt) {
-                buttonActionPerformed1(evt, frame);
+                try {
+                    buttonActionPerformed1(evt, frame);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                buttonActionPerformed2(evt, button2);
+                buttonActionPerformed2(evt, frame);
             }
         });
 
         button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
+                DatabaseConnection con = new DatabaseConnection();
                 try {
-                    buttonActionPerformed3(evt, frame, fileName);
+                    buttonActionPerformed3(evt, frame, con.dbPath());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -65,15 +71,15 @@ public class RecordGui {
         frame.setSize(400, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-
     }
 
-    private static void buttonActionPerformed1(ActionEvent evt, JFrame frame) {
+    private static void buttonActionPerformed1(ActionEvent evt, JFrame frame) throws IOException {
+        RecordSearch search = new RecordSearch();
+        JOptionPane.showMessageDialog(frame, search.showSearchResult(search.doSearch()), "Search results", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private static void buttonActionPerformed2(ActionEvent evt, JFrame frame) {
         JOptionPane.showMessageDialog(frame, "message", "Title", JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    private static void buttonActionPerformed2(ActionEvent evt, JButton button2) {
-        button2.setEnabled(false);
     }
 
     private static void buttonActionPerformed3(ActionEvent evt, JFrame frame, String fileName) throws IOException {
@@ -81,7 +87,7 @@ public class RecordGui {
         DatabaseConnection con = new DatabaseConnection();
         Random r = new Random();
         int randomRecordId = r.nextInt((con.getLastDbId(con.dbPath()) - 1) + 1) + 1;
-        BufferedReader inFile = new BufferedReader(new FileReader(fileName));
+        BufferedReader inFile = new BufferedReader(new FileReader(con.dbPath()));
 
         String line = "";
         while ((line = inFile.readLine()) != null) {
