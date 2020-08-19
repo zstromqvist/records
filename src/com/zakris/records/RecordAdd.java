@@ -143,9 +143,9 @@ public class RecordAdd extends JFrame {
                 JOptionPane.showMessageDialog(okButton,
                         "You added: " + "Artist: " + newRecord.getArtist() + ", Album name: " + newRecord.getName()
                                 + ", Year: " + newRecord.getYear() + ", Press year: " + newRecord.getPressYear()
-                                + ", Format: " + newRecord.getFormat() + ", Index: " + newRecord.getIndex());
-                setVisible(false); // you can't see me!
-                dispose(); // Destroy the JFrame object
+                                + ", Format: " + newRecord.getFormat() + ", Index: " + newRecord.getIndex(), "Record added", 1);
+                setVisible(false);
+                dispose(); 
 
             }
 
