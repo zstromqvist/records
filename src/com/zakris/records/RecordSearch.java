@@ -1,51 +1,90 @@
 package com.zakris.records;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class RecordSearch {
+public class RecordSearch extends JFrame {
 
-    public String doSearch() {
-        String search = "zep";
-        return search;
-    }
+    private static final long serialVersionUID = 1L;
+    private final JPanel panel;
+    private final JTextField searchWordInput;
+    private final JButton searchButton;
 
-    public String showSearchResult(String searchWord) throws IOException {
+    public RecordSearch() throws IOException {
 
-        String searchType = "Artist".toLowerCase();
-        StringBuilder results = new StringBuilder();
-        DatabaseConnection con = new DatabaseConnection();
-        BufferedReader dbFile = new BufferedReader(new FileReader(con.dbPath()));
+        final String[] formats = { "Artist", "Album", "Year" };
+        final int textFieldSize = 18;
 
-        int searchTypeIndex = 0;
-        if (searchType.equals("artist")) {
-            searchTypeIndex = 2;
-        } else if (searchType.equals("artist")) {
-            searchTypeIndex = 3;
-        } else if (searchType.equals("artist")) {
-            searchTypeIndex = 4;
-        }
-        
-        String line = "";
-        int counter = 0;
-        int counter2 = 0;
-        while ((line = dbFile.readLine()) != null) {
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        setBounds(450, 190, 1014, 597);
+        setResizable(false);
+        panel = new JPanel();
+        panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(panel);
+        panel.setLayout(null);
 
-            String[] recordArray = line.split(",");
+        final JLabel recordSearchLabel = new JLabel("Please enter a search term");
+        recordSearchLabel.setFont(new Font("Times New Roman", Font.PLAIN, 22));
+        recordSearchLabel.setBounds(362, 52, 325, 50);
+        panel.add(recordSearchLabel);
 
-            if (recordArray[searchTypeIndex].toLowerCase().contains(searchWord.toLowerCase()) && counter2 > 0) {
-                results.append(recordArray[2] + ", " + recordArray[3] + ", " + recordArray[4] + ", "
-                        + recordArray[5] + ", Index: " + recordArray[1] + "\n");
-                counter++;
+        final JLabel searchWordLabel = new JLabel("Search");
+        searchWordLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        searchWordLabel.setBounds(58, 152, 99, 43);
+        panel.add(searchWordLabel);
+
+        searchWordInput = new JTextField();
+        searchWordInput.setFont(new Font("Tahoma", Font.PLAIN, textFieldSize));
+        searchWordInput.setBounds(214, 151, 228, 50);
+        panel.add(searchWordInput);
+        searchWordInput.setColumns(10);
+
+        final JLabel searchTypeLabel = new JLabel("Search for");
+        searchTypeLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        searchTypeLabel.setBounds(542, 159, 99, 29);
+        panel.add(searchTypeLabel);
+
+        final JComboBox<String> searchTypeInput = new JComboBox<>(formats);
+        searchTypeInput.setFont(new Font("Tahoma", Font.PLAIN, textFieldSize));
+        searchTypeInput.setBounds(707, 151, 228, 50);
+        panel.add(searchTypeInput);
+
+        searchButton = new JButton("Search!");
+        searchButton.setFont(new Font("Tahoma", Font.PLAIN, 22));
+        searchButton.setBounds(399, 447, 259, 74);
+        panel.add(searchButton);
+
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+
+                final DatabaseConnection con = new DatabaseConnection();
+                final String searchWord = searchWordInput.getText();
+                final String searchType = (String) searchTypeInput.getSelectedItem();
+                String test = "";
+                try {
+                    test = con.searchDb(searchWord, searchType);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+                JOptionPane.showMessageDialog(searchButton, test, "Search results", 1);
+
             }
-            counter2++;
-        }
-        if (counter == 0) {
-            results.append("Nothing was found!");
-        }
-        dbFile.close();
 
-        return results.toString();
+        });
+
     }
+
 }

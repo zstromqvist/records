@@ -35,4 +35,41 @@ public class DatabaseConnection {
 
         outstream.close();
     }
+
+    public String searchDb(String searchTerm, String searchType) throws IOException {
+
+        BufferedReader dbFile = new BufferedReader(new FileReader(dbFileName));
+        StringBuilder results = new StringBuilder();
+
+        int searchTypeIndex = 0;
+        if (searchType.toLowerCase().equals("artist")) {
+            searchTypeIndex = 2;
+        } else if (searchType.toLowerCase().equals("album")) {
+            searchTypeIndex = 3;
+        } else if (searchType.toLowerCase().equals("year")) {
+            searchTypeIndex = 4;
+        }
+
+        String line = "";
+        int counter = 0;
+        int counter2 = 0;
+        while ((line = dbFile.readLine()) != null) {
+
+            String[] recordArray = line.split(",");
+
+            if (recordArray[searchTypeIndex].toLowerCase().contains(searchTerm.toLowerCase()) && counter2 > 0) {
+                results.append(recordArray[2] + ", " + recordArray[3] + ", " + recordArray[4] + ", " + recordArray[5]
+                        + ", Index: " + recordArray[1] + "\n");
+                counter++;
+            }
+            counter2++;
+        }
+        if (counter == 0) {
+            results.append("Nothing was found!");
+        }
+        dbFile.close();
+
+        return results.toString();
+
+    }
 }

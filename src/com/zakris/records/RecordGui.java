@@ -78,13 +78,12 @@ public class RecordGui {
 
     private static void buttonActionPerformed1(ActionEvent evt, JFrame frame) throws IOException {
         RecordSearch search = new RecordSearch();
-        JOptionPane.showMessageDialog(frame, search.showSearchResult(search.doSearch()), "Search results", JOptionPane.INFORMATION_MESSAGE);
+        search.setVisible(true);
     }
 
     private static void buttonActionPerformed2(ActionEvent evt) throws IOException {
         RecordAdd addRecord = new RecordAdd();
         addRecord.setVisible(true);
-
     }
 
     private static void buttonActionPerformed3(ActionEvent evt, JFrame frame) throws IOException {
