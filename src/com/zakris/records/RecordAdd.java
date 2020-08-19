@@ -143,15 +143,21 @@ public class RecordAdd extends JFrame {
                 JOptionPane.showMessageDialog(okButton,
                         "You added: " + "Artist: " + newRecord.getArtist() + ", Album name: " + newRecord.getName()
                                 + ", Year: " + newRecord.getYear() + ", Press year: " + newRecord.getPressYear()
-                                + ", Format: " + newRecord.getFormat() + ", Index: " + newRecord.getIndex(), "Record added", 1);
-                setVisible(false);
-                dispose(); 
+                                + ", Format: " + newRecord.getFormat() + ", Index: " + newRecord.getIndex(),
+                        "Record added", 1);
+
+                artistInput.setText("");
+                nameInput.setText("");
+                yearInput.setText("");
+                pressYearInput.setText("");
+                indexInput.setText("");
+                //setVisible(false);
+                //dispose();
 
             }
 
         });
 
     }
-
 
 }
