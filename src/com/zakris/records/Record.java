@@ -8,10 +8,9 @@ public class Record {
     private int year;
     private String format;
     private int pressYear = 0;
-    private String notes = "";
 
     // constructor
-    public Record(int id, String index, String artist, String name, int year, String format, int pressYear, String notes) {
+    public Record(int id, String index, String artist, String name, int year, String format, int pressYear) {
         this.id = id;
         this.index = index;
         this.artist = artist;
@@ -19,7 +18,6 @@ public class Record {
         this.year = year;
         this.format = format;
         this.pressYear = pressYear;
-        this.notes = notes;
     }
 
     // setters
@@ -51,10 +49,6 @@ public class Record {
         this.index = albumIndex;
     }
 
-    public void setnotes(String albumNotes) {
-        this.notes = albumNotes;
-    }
-
     // getters
     public int getId() {
         return this.id;
@@ -82,9 +76,5 @@ public class Record {
 
     public String getIndex() {
         return this.index;
-    }
-
-    public String getNotes() {
-        return this.notes;
     }
 }

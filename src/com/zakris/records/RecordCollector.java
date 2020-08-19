@@ -7,10 +7,7 @@ public class RecordCollector {
 
         RecordGui gui = new RecordGui();
         gui.createMenu();
-        DatabaseConnection dbCon = new DatabaseConnection();
-        System.out.println(dbCon.dbPath());
 
-        
     }
 
 }

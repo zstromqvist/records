@@ -44,16 +44,19 @@ public class RecordGui {
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                buttonActionPerformed2(evt, frame);
+                try {
+                    buttonActionPerformed2(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                DatabaseConnection con = new DatabaseConnection();
                 try {
-                    buttonActionPerformed3(evt, frame, con.dbPath());
+                    buttonActionPerformed3(evt, frame);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -78,15 +81,17 @@ public class RecordGui {
         JOptionPane.showMessageDialog(frame, search.showSearchResult(search.doSearch()), "Search results", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    private static void buttonActionPerformed2(ActionEvent evt, JFrame frame) {
-        JOptionPane.showMessageDialog(frame, "message", "Title", JOptionPane.INFORMATION_MESSAGE);
+    private static void buttonActionPerformed2(ActionEvent evt) throws IOException {
+        RecordAdd addRecord = new RecordAdd();
+        addRecord.setVisible(true);
+
     }
 
-    private static void buttonActionPerformed3(ActionEvent evt, JFrame frame, String fileName) throws IOException {
+    private static void buttonActionPerformed3(ActionEvent evt, JFrame frame) throws IOException {
 
         DatabaseConnection con = new DatabaseConnection();
         Random r = new Random();
-        int randomRecordId = r.nextInt((con.getLastDbId(con.dbPath()) - 1) + 1) + 1;
+        int randomRecordId = r.nextInt((con.getLastDbId() - 1) + 1) + 1;
         BufferedReader inFile = new BufferedReader(new FileReader(con.dbPath()));
 
         String line = "";
