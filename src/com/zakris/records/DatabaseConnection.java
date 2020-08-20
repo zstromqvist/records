@@ -29,9 +29,9 @@ public class DatabaseConnection {
 
         PrintWriter outstream = new PrintWriter(new BufferedWriter(new FileWriter(dbFileName, true)));
 
-        outstream.println(
-                newRecord.getId() + "," + newRecord.getIndex() + "," + newRecord.getArtist() + "," + newRecord.getName()
-                        + "," + newRecord.getYear() + "," + newRecord.getFormat() + "," + newRecord.getPressYear());
+        outstream.println(newRecord.getId() + "," + newRecord.getIndex() + "," + newRecord.getArtist() + ","
+                + newRecord.getName() + "," + newRecord.getYear() + "," + newRecord.getFormat() + ","
+                + newRecord.getPressYear() + "," + newRecord.getNotes());
 
         outstream.close();
     }
