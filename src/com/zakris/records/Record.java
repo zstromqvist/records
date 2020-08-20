@@ -51,7 +51,7 @@ public class Record {
         this.index = albumIndex;
     }
 
-    public void setnotes(String albumNotes) {
+    public void setNotes(String albumNotes) {
         this.notes = albumNotes;
     }
 
