@@ -98,6 +98,7 @@ public class DatabaseConnection {
 
         LinkedHashSet<String> linkedHashArtists = new LinkedHashSet<String>(Arrays.asList(artistList));
         String[] artistListFinal = linkedHashArtists.toArray(new String[linkedHashArtists.size()]);
+        Arrays.sort(artistListFinal);
         return artistListFinal;
     }
 }
