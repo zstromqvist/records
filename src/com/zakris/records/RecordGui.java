@@ -28,6 +28,7 @@ public class RecordGui {
         JButton button1 = new JButton("Search records");
         JButton button2 = new JButton("Add record(s)");
         JButton button3 = new JButton("Pick a record for me!");
+        JButton button4 = new JButton("List by artist");
 
         button1.addActionListener(new ActionListener() {
 
@@ -63,9 +64,22 @@ public class RecordGui {
             }
         });
 
+        button4.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                try {
+                    buttonActionPerformed4(evt, frame);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         panel.add(button1);
         panel.add(button2);
         panel.add(button3);
+        panel.add(button4);
 
         // add everything to the frame
         frame.setLayout(new GridLayout(2, 1));
@@ -106,5 +120,10 @@ public class RecordGui {
             }
         }
         inFile.close();
+    }
+
+    private static void buttonActionPerformed4(ActionEvent evt, JFrame frame) throws IOException {
+        ListByArtist artistList = new ListByArtist();
+        artistList.setVisible(true);
     }
 }

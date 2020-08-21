@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 
 public class DatabaseConnection {
     private String dbFileName = "db.csv";
@@ -71,5 +73,31 @@ public class DatabaseConnection {
 
         return results.toString();
 
+    }
+
+    public String[] getArtists(int dbIds) throws IOException {
+
+        String[] artistList = new String[dbIds];
+        BufferedReader dbFile = new BufferedReader(new FileReader(dbFileName));
+
+        String line = "";
+        int counter = 0;
+        int counter2 = 0;
+        while ((line = dbFile.readLine()) != null && counter2 < dbIds) {
+
+            if (counter > 0) {
+                String[] recordArray = line.split(",");
+                artistList[counter2] = recordArray[2];
+                counter2++;
+            }
+
+            counter++;
+        }
+
+        dbFile.close();
+
+        LinkedHashSet<String> linkedHashArtists = new LinkedHashSet<String>(Arrays.asList(artistList));
+        String[] artistListFinal = linkedHashArtists.toArray(new String[linkedHashArtists.size()]);
+        return artistListFinal;
     }
 }

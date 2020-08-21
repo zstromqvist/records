@@ -25,44 +25,44 @@ public class RecordSearch extends JFrame {
 
         final String[] formats = { "Artist", "Album", "Year" };
         final int textFieldSize = 18;
+        int textLabelSize = 16;
+
+        int inputLabelX = 35;
+        int inputFieldX = 215;
+        int inputY = 15;
 
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        setBounds(450, 190, 1014, 597);
+        setBounds(2000, 100, 450, 380);
         setResizable(false);
         panel = new JPanel();
         panel.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(panel);
         panel.setLayout(null);
 
-        final JLabel recordSearchLabel = new JLabel("Please enter a search term");
-        recordSearchLabel.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-        recordSearchLabel.setBounds(362, 52, 325, 50);
-        panel.add(recordSearchLabel);
-
-        final JLabel searchWordLabel = new JLabel("Search");
-        searchWordLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        searchWordLabel.setBounds(58, 152, 99, 43);
-        panel.add(searchWordLabel);
+        final JLabel freeTextInputLabel = new JLabel("Free text search");
+        freeTextInputLabel.setFont(new Font("Tahoma", Font.PLAIN, textLabelSize));
+        freeTextInputLabel.setBounds(inputLabelX, inputY, 200, 30);
+        panel.add(freeTextInputLabel);
 
         searchWordInput = new JTextField();
         searchWordInput.setFont(new Font("Tahoma", Font.PLAIN, textFieldSize));
-        searchWordInput.setBounds(214, 151, 228, 50);
+        searchWordInput.setBounds(inputFieldX, inputY, 200, 30);
         panel.add(searchWordInput);
         searchWordInput.setColumns(10);
 
-        final JLabel searchTypeLabel = new JLabel("Search for");
-        searchTypeLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        searchTypeLabel.setBounds(542, 159, 99, 29);
-        panel.add(searchTypeLabel);
+        final JLabel formatLabel = new JLabel("Search type");
+        formatLabel.setFont(new Font("Tahoma", Font.PLAIN, textLabelSize));
+        formatLabel.setBounds(inputLabelX, inputY + 1*40, 200, 30);
+        panel.add(formatLabel);
 
         final JComboBox<String> searchTypeInput = new JComboBox<>(formats);
         searchTypeInput.setFont(new Font("Tahoma", Font.PLAIN, textFieldSize));
-        searchTypeInput.setBounds(707, 151, 228, 50);
+        searchTypeInput.setBounds(inputFieldX, inputY + 1*40, 200, 30);
         panel.add(searchTypeInput);
 
         searchButton = new JButton("Search!");
-        searchButton.setFont(new Font("Tahoma", Font.PLAIN, 22));
-        searchButton.setBounds(399, 447, 259, 74);
+        searchButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        searchButton.setBounds(150, 310, 150, 30);
         panel.add(searchButton);
 
         searchButton.addActionListener(new ActionListener() {
