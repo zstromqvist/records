@@ -37,7 +37,7 @@ public class RecordAdd extends JFrame {
         int inputY = 15;
 
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        setBounds(2000, 100, 450, 380);
+        setBounds(500, 100, 450, 380);
         setResizable(false);
         panel = new JPanel();
         panel.setBorder(new EmptyBorder(5, 5, 5, 5));
