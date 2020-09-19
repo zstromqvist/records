@@ -123,6 +123,8 @@ public class RecordAdd extends JFrame {
         okButton.setBounds(150, 310, 150, 30);
         panel.add(okButton);
 
+        this.getRootPane().setDefaultButton(okButton);
+
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
